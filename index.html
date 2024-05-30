@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ระบบแจ้งซ่อมออนไลน์</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome สำหรับใช้ไอคอน -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-laptop-code"></i> ระบบแจ้งซ่อมออนไลน์</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <!-- ลิงก์เมนู -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-tasks"></i> สถานะการซ่อม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="repair.html"><i class="fas fa-tools"></i> แจ้งปัญหา/แจ้งซ่อม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="status.html"><i class="fas fa-chart-bar"></i> สถิติการแจ้งซ่อม</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#adminLoginModal"><i class="fas fa-sign-in-alt"></i> Administrator</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main role="main" class="container">
+        <!-- Section title -->
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-primary rounded shadow-sm">
+            <h1 class="h6 mb-0 text-white lh-1"><i class="fas fa-tasks"></i> สถานะการซ่อม</h1>
+        </div>
+
+        <!-- Repair status table -->
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>วันที่แจ้งซ่อม</th>
+                            <th>หมายเลขใบแจ้งซ่อม</th>
+                            <th>ผู้แจ้งซ่อม</th>
+                            <th>หน่วยงาน</th>
+                            <th>รายการแจ้งซ่อม</th>
+                            <th>ผู้รับแจ้งซ่อม</th>
+                            <th>สถานะ</th>
+                            <th>รายละเอียด</th>
+                        </tr>
+                    </thead>
+                    <tbody id="repairStatusBody">
+                        <!-- ข้อมูลจะถูกเพิ่มที่นี่ -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Administrator Login -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1" role="dialog" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adminLoginModalLabel"><i class="fas fa-user-shield"></i> Administrator Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="adminLoginForm" action="admin_dashboard.html" method="post">
+                    <div class="form-group">
+                        <label for="adminUsername"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" class="form-control" id="adminUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" class="form-control" id="adminPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <small class="text-muted">Forgot your password? <a href="#">Reset it here</a>.</small>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer class="my-5 pt-2 text-muted text-center text-small">
+        <small class="text-muted">Copyright © All rights reserved.</small>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Chart.js สำหรับสร้างกราฟ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF สำหรับสร้าง PDF -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf"></script>
+    <!-- Supabase JavaScript library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!-- Custom script -->
+    <script src="js/reports.js"></script>
+</body>
+</html>
