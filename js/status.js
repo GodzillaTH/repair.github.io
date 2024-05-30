@@ -1,31 +1,34 @@
-const SUPABASE_URL = 'https://YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+import { createClient } from '@supabase/supabase-js'
 
-async function loadRepairStatus() {
-    const { data, error } = await supabase.from('repairs').select('*');
+const supabaseUrl = 'https://pqewgndlmzvflevqumcd.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxZXdnbmRsbXp2ZmxldnF1bWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcwNTY1MjMsImV4cCI6MjAzMjYzMjUyM30.WbgkiLXAzrUzXykroaMzrmXMyrMAmr8JJ-i5e-TAF4I'
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+async function fetchRepairStatus() {
+    const { data, error } = await supabase
+        .from('repairs')
+        .select('*')
+
     if (error) {
-        console.error('Error loading repair status: ', error);
+        console.error('Error fetching repair status:', error)
     } else {
-        const tableBody = document.getElementById('repairStatusBody');
+        const tbody = document.getElementById('repairStatusBody')
+        tbody.innerHTML = ''
         data.forEach(repair => {
-            const row = tableBody.insertRow();
-            row.innerHTML = `
+            const tr = document.createElement('tr')
+            tr.innerHTML = `
                 <td>${repair.date}</td>
-                <td>${repair.id}</td>
+                <td>${repair.repair_id}</td>
                 <td>${repair.requester}</td>
                 <td>${repair.department}</td>
-                <td>${repair.items}</td>
+                <td>${repair.item}</td>
                 <td>${repair.receiver}</td>
                 <td>${repair.status}</td>
-                <td><button class="btn btn-info btn-sm" onclick="viewDetails('${repair.id}')">View Details</button></td>
-            `;
-        });
+                <td>${repair.details}</td>
+            `
+            tbody.appendChild(tr)
+        })
     }
 }
 
-function viewDetails(id) {
-    alert(`Details for repair ID: ${id}`);
-}
-
-document.addEventListener('DOMContentLoaded', loadRepairStatus);
+document.addEventListener('DOMContentLoaded', fetchRepairStatus)
