@@ -1,14 +1,14 @@
 // supabase.js
 
-// การตั้งค่า Supabase client
-const { createClient } = require('@supabase/supabase-js');
-const supabaseUrl = 'https://pqewgndlmzvflevqumcd.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxZXdnbmRsbXp2ZmxldnF1bWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcwNTY1MjMsImV4cCI6MjAzMjYzMjUyM30.WbgkiLXAzrUzXykroaMzrmXMyrMAmr8JJ-i5e-TAF4I';
-const supabaseClient = createClient(supabaseUrl, supabaseKey);
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://pqewgndlmzvflevqumcd.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxZXdnbmRsbXp2ZmxldnF1bWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcwNTY1MjMsImV4cCI6MjAzMjYzMjUyM30.WbgkiLXAzrUzXykroaMzrmXMyrMAmr8JJ-i5e-TAF4I'
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 // ฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ทั้งหมด
 async function getUsers() {
-  const { data, error } = await supabaseClient
+  const { data, error } = await supabase
     .from('users')
     .select('*');
   
@@ -22,7 +22,7 @@ async function getUsers() {
 
 // ฟังก์ชันเพื่อเพิ่มผู้ใช้ใหม่
 async function addUser(email, password, role) {
-  const { data, error } = await supabaseClient.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password
   });
@@ -32,9 +32,9 @@ async function addUser(email, password, role) {
     return null;
   }
 
-  // เพิ่มข้อมูลผู้ใช้อื่นๆ ในตาราง 'profiles' (หรือชื่ออื่นๆ ที่คุณตั้งไว้)
+  // เพิ่มข้อมูลผู้ใช้อื่นๆ ในตาราง 'profiles'
   const { user } = data;
-  const { error: profileError } = await supabaseClient
+  const { error: profileError } = await supabase
     .from('profiles')
     .insert([{ id: user.id, email: email, role: role }]);
 
@@ -48,7 +48,7 @@ async function addUser(email, password, role) {
 
 // ฟังก์ชันเพื่อดึงข้อมูลการซ่อมทั้งหมด
 async function getRepairs() {
-  const { data, error } = await supabaseClient
+  const { data, error } = await supabase
     .from('repairs')
     .select('*');
   
@@ -62,7 +62,7 @@ async function getRepairs() {
 
 // ฟังก์ชันเพื่อเพิ่มการซ่อมใหม่
 async function addRepair(requester, equipment, status) {
-  const { data, error } = await supabaseClient
+  const { data, error } = await supabase
     .from('repairs')
     .insert([{ requester: requester, equipment: equipment, status: status }]);
   
@@ -76,7 +76,7 @@ async function addRepair(requester, equipment, status) {
 
 // ฟังก์ชันเพื่ออัปเดตสถานะการซ่อม
 async function updateRepairStatus(repairId, status) {
-  const { data, error } = await supabaseClient
+  const { data, error } = await supabase
     .from('repairs')
     .update({ status: status })
     .eq('id', repairId);
