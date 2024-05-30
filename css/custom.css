@@ -1,0 +1,169 @@
+/* custom.css */
+
+/* ตั้งค่าฟอนต์ให้กับทั้งเว็บไซต์ */
+body {
+  font-family: 'Krub', sans-serif;
+}
+
+/* ปรับขนาดฟอนต์ของเนื้อหาหลัก */
+.font14 {
+  font-size: 14px;
+}
+
+/* ปรับสไตล์ของ modal header */
+.modal-header {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* ปรับขนาดและการจัดวางของปุ่มภายใน modal */
+.modal-footer .btn {
+  width: 100px;
+}
+
+/* ปรับการแสดงผลของไอคอนใน navbar */
+.navbar-brand i,
+.nav-link i {
+  margin-right: 5px;
+}
+
+/* ปรับสีและการแสดงผลของปุ่มในตาราง */
+.table .btn-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+/* ตั้งค่าสำหรับการแสดงผลของ pagination */
+.pagination .page-item .page-link {
+  color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* ปรับการแสดงผลของข้อความใน footer */
+footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+/* การแสดงผลของ nav tabs */
+.nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}
+
+/* Additional custom styles for better UX */
+
+/* ปรับสไตล์ของ modal content */
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ปรับสไตล์ของ label ใน form-group */
+.form-group label {
+  font-weight: bold;
+}
+
+/* ปรับการแสดงผลของไอคอนใน form-group */
+.form-group i {
+  margin-right: 5px;
+}
+
+/* ปรับสไตล์ของปุ่ม primary */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* ปรับสไตล์ของ footer modal */
+.modal-footer {
+  background-color: #f8f9fa;
+}
+
+.modal-footer a {
+  color: #007bff;
+}
+
+.modal-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ปรับสไตล์ของ jumbotron */
+.jumbotron {
+  background-color: #f8f9fa;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.jumbotron h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.jumbotron p {
+  font-size: 1.2rem;
+}
+
+/* ปรับสไตล์ของปุ่ม logout */
+#logoutBtn {
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+/* ปรับการแสดงผลของตารางในหน้า manage repairs */
+.table {
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ปรับสไตล์ของปุ่มในหน้า manage users */
+#addUserModal .modal-header {
+  background-color: #343a40;
+  color: white;
+}
+
+#addUserModal .modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#addUserModal .form-group label {
+  font-weight: bold;
+}
+
+#addUserModal .modal-footer {
+  background-color: #f8f9fa;
+}
