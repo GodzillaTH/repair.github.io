@@ -1,14 +1,13 @@
 // supabase.js
 
-import { createClient } from '@supabase/supabase-js';
-
 // การตั้งค่า Supabase client
+const { createClient } = require('@supabase/supabase-js');
 const supabaseUrl = 'https://pqewgndlmzvflevqumcd.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxZXdnbmRsbXp2ZmxldnF1bWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcwNTY1MjMsImV4cCI6MjAzMjYzMjUyM30.WbgkiLXAzrUzXykroaMzrmXMyrMAmr8JJ-i5e-TAF4I';
 const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
 // ฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ทั้งหมด
-export async function getUsers() {
+async function getUsers() {
   const { data, error } = await supabaseClient
     .from('users')
     .select('*');
@@ -22,7 +21,7 @@ export async function getUsers() {
 }
 
 // ฟังก์ชันเพื่อเพิ่มผู้ใช้ใหม่
-export async function addUser(email, password, role) {
+async function addUser(email, password, role) {
   const { data, error } = await supabaseClient.auth.signUp({
     email: email,
     password: password
@@ -48,7 +47,7 @@ export async function addUser(email, password, role) {
 }
 
 // ฟังก์ชันเพื่อดึงข้อมูลการซ่อมทั้งหมด
-export async function getRepairs() {
+async function getRepairs() {
   const { data, error } = await supabaseClient
     .from('repairs')
     .select('*');
@@ -62,7 +61,7 @@ export async function getRepairs() {
 }
 
 // ฟังก์ชันเพื่อเพิ่มการซ่อมใหม่
-export async function addRepair(requester, equipment, status) {
+async function addRepair(requester, equipment, status) {
   const { data, error } = await supabaseClient
     .from('repairs')
     .insert([{ requester: requester, equipment: equipment, status: status }]);
@@ -76,7 +75,7 @@ export async function addRepair(requester, equipment, status) {
 }
 
 // ฟังก์ชันเพื่ออัปเดตสถานะการซ่อม
-export async function updateRepairStatus(repairId, status) {
+async function updateRepairStatus(repairId, status) {
   const { data, error } = await supabaseClient
     .from('repairs')
     .update({ status: status })
@@ -89,3 +88,6 @@ export async function updateRepairStatus(repairId, status) {
   
   return data;
 }
+
+// ส่งออกฟังก์ชันเพื่อใช้งานในสคริปต์อื่นๆ
+export { getUsers, addUser, getRepairs, addRepair, updateRepairStatus };

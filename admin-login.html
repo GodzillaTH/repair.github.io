@@ -5,56 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Login</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
-    <style>
-        .login-container {
-            margin-top: 10%;
-        }
-        .login-form {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .login-form h2 {
-            margin-bottom: 30px;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .form-group label {
-            font-weight: bold;
-        }
-        .form-control {
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
-    <div class="container login-container">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="login-form">
-                    <h2 class="text-center">Admin Login</h2>
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label for="email"><i class="fas fa-envelope"></i> Email address:</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd"><i class="fas fa-lock"></i> Password:</label>
-                            <input type="password" class="form-control" id="pwd" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    </form>
-                </div>
+                <h2 class="text-center mt-5">Admin Login</h2>
+                <form id="loginForm" onsubmit="login(event)">
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
             </div>
         </div>
     </div>
@@ -63,6 +32,21 @@
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script src="../js/admin.js"></script>
+    <script src="../js/supabase.js"></script>
+    <script>
+        async function login(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('pwd').value;
+
+            try {
+                const { error } = await supabaseClient.auth.signIn({ email, password });
+                if (error) throw error;
+                window.location.href = 'admin-dashboard.html';
+            } catch (error) {
+                alert('เกิดข้อผิดพลาดในการเข้าสู่ระบบ: ' + error.message);
+            }
+        }
+    </script>
 </body>
 </html>
