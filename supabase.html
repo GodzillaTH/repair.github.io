@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Test Supabase Connection</title>
+    <script type="module">
+        import { getUsers, addUser, getRepairs, addRepair, updateRepairStatus } from './supabase.js';
+
+        async function testSupabase() {
+            // ทดสอบการเพิ่มผู้ใช้ใหม่
+            const newUser = await addUser('testuser@example.com', 'password123', 'user');
+            console.log('New User:', newUser);
+
+            // ทดสอบการดึงข้อมูลผู้ใช้
+            const users = await getUsers();
+            console.log('Users:', users);
+
+            // ทดสอบการเพิ่มการซ่อมใหม่
+            const newRepair = await addRepair('Test User', 'Laptop', 'Pending');
+            console.log('New Repair:', newRepair);
+
+            // ทดสอบการดึงข้อมูลการซ่อม
+            const repairs = await getRepairs();
+            console.log('Repairs:', repairs);
+
+            // ทดสอบการอัปเดตสถานะการซ่อม
+            if (repairs.length > 0) {
+                const updatedRepair = await updateRepairStatus(repairs[0].id, 'Completed');
+                console.log('Updated Repair:', updatedRepair);
+            }
+        }
+
+        window.onload = testSupabase;
+    </script>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <p>Open the console to see the results.</p>
+</body>
+</html>
